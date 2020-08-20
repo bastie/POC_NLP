@@ -1,3 +1,7 @@
+### BEGIN OS
+.DS_Store
+
+### BEGIN PYTHON
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +131,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+### EOF
+
