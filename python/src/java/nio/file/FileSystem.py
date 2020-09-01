@@ -24,7 +24,10 @@ class FileSystem(ABC):
         raise UnsupportedOperationException("Not yet implemented")
         
         
-class __pjdk_DefaulFileSystem__ (FileSystem):
+class __vampire_DefaulFileSystem__ (FileSystem):
+    '''
+    Default implementation of FileSystem with linking to underlying Python
+    ''' 
     
     def __init__(self):
         '''

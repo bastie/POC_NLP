@@ -5,7 +5,7 @@ Created on 01.09.2020
 '''
 from builtins import staticmethod
 from java.nio.file import FileSystem
-from java.nio.file.FileSystem import __pjdk_DefaulFileSystem__
+from java.nio.file.FileSystem import __vampire_DefaulFileSystem__
 
 class FileSystems(object):
     '''
@@ -20,4 +20,4 @@ class FileSystems(object):
         
     @staticmethod
     def getDefault () -> FileSystem:
-        return __pjdk_DefaulFileSystem__()
+        return __vampire_DefaulFileSystem__()
