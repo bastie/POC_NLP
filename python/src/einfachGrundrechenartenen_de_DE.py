@@ -16,15 +16,16 @@ see
 
 import nltk     # for NLP 
 from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
-import os       # for path
-import sys      # for clear exit program
 from java.nio.file.FileSystems import FileSystems
 from java.nio.file.Files import Files
+from java.lang.System import System
+from java.io.File import File
 
 ALL_GOOD = 0
 
 # define relative filepath
-theFile = os.path.abspath("./../../../workspace/POC_NLP/text/src/math/einfache_grundrechenarten.de_DE.utf8")
+theFile = File("./../../../workspace/POC_NLP/text/src/math/einfache_grundrechenarten.de_DE.utf8").getCanonicalPath()
+
 
 # read the file complete in var text and print the text
 text = Files.readString(FileSystems.getDefault().getPath(theFile))
@@ -37,13 +38,11 @@ allSentences = nltk.sent_tokenize(text,language='german')
 # analyse the word typ
 tagger = hTagger.HanoverTagger("morphmodel_ger.pgz")
 for sentences in allSentences:
-    print(sentences)
     sentencesToken = nltk.tokenize.word_tokenize(sentences,language='german')
-    print(sentencesToken)
     tags = tagger.tag_sent(sentencesToken)
     print (tags)
     
     
 # ALL_GOOD = "Oh holy shit"
 
-sys.exit(ALL_GOOD);
+System.exit(ALL_GOOD);
