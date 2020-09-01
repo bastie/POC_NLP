@@ -1,3 +1,10 @@
+'''
+see 
+# href="http://www.nltk.org/book/ - Natural Language Processing with Python - Analyzing Text with the Natural Language Toolkit 
+'''
+
+
+
 # install certifi, nltk, HanTa, numpy with pip3
 # import certifi
 # certifi.where()

@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>info.html</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/info.html</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
