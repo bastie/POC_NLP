@@ -1,0 +1,4 @@
+wheel
+nltk
+HanTa
+numpy

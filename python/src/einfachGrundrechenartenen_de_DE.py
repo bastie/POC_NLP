@@ -9,20 +9,19 @@
 
 import nltk     # for NLP 
 from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
-import codecs   # for encodings
 import os       # for path
 import sys      # for clear exit program
+from java.nio.file.FileSystems import FileSystems
+from java.nio.file.Files import Files
 
 ALL_GOOD = 0
 
-# define relative filepath and print location
+# define relative filepath
 theFile = os.path.abspath("./../../../workspace/POC_NLP/text/src/math/einfache_grundrechenarten.de_DE.utf8")
-print (theFile)
 
-# define a File to read only in utf-8 coded, read this file complete in var text and close it
-textFile = codecs.open(theFile, "r", "utf-8")
-text = textFile.read()
-textFile.close()
+# read the file complete in var text and print the text
+text = Files.readString(FileSystems.getDefault().getPath(theFile))
+print (text)
 
 # get sentences from nltk for german
 allSentences = nltk.sent_tokenize(text,language='german')
