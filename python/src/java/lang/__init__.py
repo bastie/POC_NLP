@@ -1,6 +1,6 @@
 '''
 
-  This package is nearly a skeleton.
+  The blood of java.lang package.
 
   full implemented:
   

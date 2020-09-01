@@ -14,8 +14,12 @@ see
 ### ERROR 1123 do this...
 ### /Applications/Python 3.6/Install Certificates.command
 
+
+# NLP APIs
 import nltk     # for NLP 
 from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
+
+# Just another vampire API
 from java.nio.file.FileSystems import FileSystems
 from java.nio.file.Files import Files
 from java.lang.System import System
