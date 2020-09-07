@@ -25,7 +25,10 @@ from java.nio.file.Files import Files
 from java.lang.System import System
 from java.io.File import File
 
-
+# HACK: I need before import word2numberi18n the environment => I think a bug in word2numberi18n 
+import os
+os.environ ["w2n.lang"] = "de" 
+from word2numberi18n import w2n
 
 
 class Calculate :
@@ -36,21 +39,20 @@ class Calculate :
         calc = Calculate ()
         calc.run()
         
-    def simpleCardNounExtractor (self,tags : tuple):
-#        print (tags)
-#        for tag in tags :
-#            if "CARD" == tag[2] :
-#                print (tag)
+    def simpleCardString2NumberConverter (self,tags : tuple) -> [tuple]:
         result = []
 
         for index in range(len (tags)) :
             if "CARD" == tags[index][2] :
-                print (tags[index])
                 if "NN" == tags[index+1] [2]:
-                    print (tags[index][1] + " " + tags[index+1][0])
+                    if tags[index][1].isnumeric() :
+                        tags[index] = (tags[index][0],int(tags[index][1]),tags[index][2])
+                    else :
+                        # convert 
+                        tags[index] = (tags[index][0],w2n.word_to_num(tags[index][1]),tags[index][2])
+                        pass
                     result.append((tags[index][1],tags[index+1][0]))
-
-        pass
+        return result
     
     def run (self):
 
@@ -71,7 +73,7 @@ class Calculate :
         for sentences in allSentences:
             sentencesToken = nltk.tokenize.word_tokenize(sentences,language='german')
             tags = tagger.tag_sent(sentencesToken)
-            self.simpleCardNounExtractor(tags)
+            self.simpleCardString2NumberConverter(tags)
          
             #grammar = "NP : {<CARD>*<NN>1}"
             #parser = nltk.RegexpParser (grammar)
@@ -82,47 +84,6 @@ class Calculate :
             
         System.exit(0);
         
-
-number_system_en = {
-    'zero': 0,
-    'one': 1,
-    'two': 2,
-    'three': 3,
-    'four': 4,
-    'five': 5,
-    'six': 6,
-    'seven': 7,
-    'eight': 8,
-    'nine': 9,
-    'ten': 10,
-    'eleven': 11,
-    'twelve': 12,
-    'thirteen': 13,
-    'fourteen': 14,
-    'fifteen': 15,
-    'sixteen': 16,
-    'seventeen': 17,
-    'eighteen': 18,
-    'nineteen': 19,
-    'twenty': 20,
-    'thirty': 30,
-    'forty': 40,
-    'fifty': 50,
-    'sixty': 60,
-    'seventy': 70,
-    'eighty': 80,
-    'ninety': 90,
-    'hundred': 100,
-    'thousand': 1000,
-    'million': 1000000,
-    'billion': 1000000000,
-    'point': '.'
-}
-
-decimal_words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-print ()
-print (decimal_words)
-
 
 
 

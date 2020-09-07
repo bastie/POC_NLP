@@ -1,4 +1,5 @@
 VampireApi >= 0.1.0
+word2number-i18n
 
 wheel
 nltk
