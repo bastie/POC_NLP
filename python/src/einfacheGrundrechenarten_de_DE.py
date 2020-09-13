@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 - Sebastian Ritter <bastie@users.noreply.github.com>
+# SPDX-License-Identifier: LicenseRef-NONE
+
+
 '''
 see 
 # href="http://www.nltk.org/book/ - Natural Language Processing with Python - Analyzing Text with the Natural Language Toolkit 
@@ -16,22 +20,14 @@ see
 
 
 # NLP APIs
-import nltk     # for NLP 
-from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
+from biz.ritter.nlp import Text     # for sentences class type detection
 
 # Just another vampire API
 from java.nio.file.FileSystems import FileSystems
-from java.nio.file.Files import Files
 from java.lang.System import System
 from java.io.File import File
 
 from rdflib import Graph
-
-# HACK: I need before import word2numberi18n the environment => I think a bug in word2numberi18n 
-import os
-from rdflib.term import rdflib_skolem_genid
-os.environ ["w2n.lang"] = "de" 
-from word2numberi18n import w2n
 
 
 class Calculate :
@@ -42,21 +38,6 @@ class Calculate :
         calc = Calculate ()
         calc.run()
         
-    def simpleCardString2NumberConverter (self,tags : tuple) -> [tuple]:
-        result = []
-
-        for index in range(len (tags)) :
-            if "CARD" == tags[index][2] :
-                if "NN" == tags[index+1] [2]:
-                    if tags[index][1].isnumeric() :
-                        tags[index] = (tags[index][0],int(tags[index][1]),tags[index][2])
-                    else :
-                        # convert 
-                        tags[index] = (tags[index][0],w2n.word_to_num(tags[index][1]),tags[index][2])
-                        pass
-                    result.append((tags[index][1],tags[index+1][0]))
-        return result
-    
     def loadRDF (self):
         simpleModel = Graph()
         simpleModel.parse("./../../../workspace/POC_NLP/text/src/math/einfacheGrundrechenarten_de_DE.ttl",format="turtle")
@@ -70,20 +51,15 @@ class Calculate :
         
         
         # read the file complete in var text and print the text
-        text = Files.readString(FileSystems.getDefault().getPath(theFile))
+        textEinfacheGrundrechenarten = Text.Text() # FIXME: VampireAPI Problem?
+        textEinfacheGrundrechenarten.setSource (FileSystems.getDefault().getPath(theFile))
+        textEinfacheGrundrechenarten.run(lang_code_id_iso639_2='ger')
+        text = textEinfacheGrundrechenarten.toString()
         print (text)
         
-        # get sentences from nltk for german
-        allSentences = nltk.sent_tokenize(text,language='german')
-        # iterate over the sentences, print the sentences and 
-        # tokenize the sentence in his word before print words and
-        # analyse the word typ
-        tagger = hTagger.HanoverTagger("morphmodel_ger.pgz")
-        for sentences in allSentences:
-            sentencesToken = nltk.tokenize.word_tokenize(sentences,language='german')
-            tags = tagger.tag_sent(sentencesToken)
-            self.simpleCardString2NumberConverter(tags)
+        
          
+            # next not working how I want
             #grammar = "NP : {<CARD>*<NN>1}"
             #parser = nltk.RegexpParser (grammar)
             #output = parser.parse(tags)

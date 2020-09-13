@@ -3,17 +3,17 @@ Upstream-Name: POC_NLP
 Upstream-Contact: Sebastian Ritter <bastie@users.noreply.github.com>
 Source: https://github.com/bastie/POC_NLP
 
-Files: text/* python/* sde/*
+Files: text/* python/src/math/* sde/*
 Comment: this POC has no internal function but is a glue between sources
 Copyright: 2020 Sebastian Ritter <bastie@users.noreply.github.com>
 License: LicenseRef-NONE
 
-Files: .gitignore .travis.yml .github/*
+Files: .gitignore .travis.yml .github/* python/.project python/.pydev python/.pydevproject 
 Comment: project controlling files
 Copyright: 2020 Sebastian Ritter <bastie@users.noreply.github.com>
 License: LicenseRef-NONE
 
-Files: README.md 
+Files: README.md python/requirements.txt
 Comment: readme files
 Copyright: 2020 Sebastian Ritter <bastie@users.noreply.github.com>
 License: LicenseRef-NONE
