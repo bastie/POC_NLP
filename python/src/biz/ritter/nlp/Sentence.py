@@ -9,6 +9,7 @@ Created on 13.09.2020
 import nltk
 from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
 from java.lang.UnsupportedOperationException import UnsupportedOperationException
+from java.lang.IllegalArgumentException import IllegalArgumementException
 
 def iso_639_2_to_nltk_language(x, default=None) -> str:
 # TODO: same method defined in Sentence
@@ -73,8 +74,7 @@ class Sentence(object):
                     elif "?" == self.taggedTokens[-1][0]:
                         result = "question"
                     else:
-                        # HACK: need IllegalArgumentException in VampireAPI
-                        raise UnsupportedOperationException () 
+                        raise IllegalArgumementException (message = "Unknown last char '"+str(self.taggedTokens[-1][0])+"' in sentence:\r"+self.toString()) 
         else :
             raise UnsupportedOperationException (message = "Language "+language+ " not yet (fully) implemented.")
         self.sentenceClass = result

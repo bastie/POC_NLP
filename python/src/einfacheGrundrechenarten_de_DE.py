@@ -51,7 +51,7 @@ class Calculate :
         
         
         # read the file complete in var text and print the text
-        textEinfacheGrundrechenarten = Text.Text() # FIXME: VampireAPI Problem?
+        textEinfacheGrundrechenarten = Text.Text() 
         textEinfacheGrundrechenarten.setSource (FileSystems.getDefault().getPath(theFile))
         textEinfacheGrundrechenarten.run(lang_code_id_iso639_2='ger')
         text = textEinfacheGrundrechenarten.toString()

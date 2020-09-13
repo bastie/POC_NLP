@@ -12,8 +12,7 @@ import nltk     # for NLP
 from biz.ritter.nlp import Sentence
 
 from java.nio.file import Path, Files
-# HACK: Vampire API 0.2 needed for type IOException
-#from java.io import IOException
+from java.io import IOException
 
 def iso_639_2_to_nltk_language(x, default=None) -> str:
 # TODO: same method defined in Sentence
@@ -39,8 +38,7 @@ class Text(object):
     
     def load (self) -> 'Text': # Python 'fearture' self type result, needed for FluentInterfacePattern 
         if None == self.source :
-            # HACK: Vampire API 0.2 needed for type IOException
-            pass # raise IOException ()
+            raise IOException ()
         self.text = Files.Files.readString(self.source)
         return self
     
