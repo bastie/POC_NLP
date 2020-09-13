@@ -25,8 +25,11 @@ from java.nio.file.Files import Files
 from java.lang.System import System
 from java.io.File import File
 
+from rdflib import Graph
+
 # HACK: I need before import word2numberi18n the environment => I think a bug in word2numberi18n 
 import os
+from rdflib.term import rdflib_skolem_genid
 os.environ ["w2n.lang"] = "de" 
 from word2numberi18n import w2n
 
@@ -54,7 +57,13 @@ class Calculate :
                     result.append((tags[index][1],tags[index+1][0]))
         return result
     
+    def loadRDF (self):
+        simpleModel = Graph()
+        simpleModel.parse("./../../../workspace/POC_NLP/text/src/math/einfacheGrundrechenarten_de_DE.ttl",format="turtle")
+        print("Anzahl: "+str(len(simpleModel)))
+    
     def run (self):
+        self.loadRDF()
 
         # define relative filepath
         theFile = File("./../../../workspace/POC_NLP/text/src/math/einfache_grundrechenarten.de_DE.utf8").getCanonicalPath()
@@ -84,7 +93,6 @@ class Calculate :
             
         System.exit(0);
         
-
 
 
 Calculate.main()

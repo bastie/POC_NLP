@@ -1,0 +1,21 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: POC_NLP
+Upstream-Contact: Sebastian Ritter <bastie@users.noreply.github.com>
+Source: https://github.com/bastie/POC_NLP
+
+Files: text/* python/* sde/*
+Comment: this POC has no internal function but is a glue between sources
+Copyright: 2020 Sebastian Ritter <bastie@users.noreply.github.com>
+License: LicenseRef-NONE
+
+Files: .gitignore .travis.yml .github/*
+Comment: project controlling files
+Copyright: 2020 Sebastian Ritter <bastie@users.noreply.github.com>
+License: LicenseRef-NONE
+
+Files: README.md 
+Comment: readme files
+Copyright: 2020 Sebastian Ritter <bastie@users.noreply.github.com>
+License: LicenseRef-NONE
+
+

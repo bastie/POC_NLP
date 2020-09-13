@@ -5,3 +5,6 @@ wheel
 nltk
 HanTa
 numpy
+
+rdflib
+
