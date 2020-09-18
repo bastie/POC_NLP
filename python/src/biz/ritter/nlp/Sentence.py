@@ -11,11 +11,6 @@ from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - ne
 from java.lang import IllegalArgumentException, UnsupportedOperationException, Object
 from biz.ritter.nlp.util import Toolkit
 
-# HACK: I need before import word2numberi18n the environment => I think a bug in word2numberi18n 
-import os
-os.environ ["w2n.lang"] = "de" 
-from word2numberi18n import w2n
-
 
 class Sentence(Object):
     '''
@@ -42,7 +37,7 @@ class Sentence(Object):
 #        print (sentenceText)
         sentencesToken = nltk.tokenize.word_tokenize(sentenceText,language=nltk_lang)
         tags = tagger.tag_sent(sentencesToken)
-        self.simpleCardString2NumberConverter(tags)
+        Toolkit().simpleCardString2NumberConverter(tags)
         self.taggedTokens = tags
 #        print(self.toString())
 #        print (tags)
@@ -78,25 +73,6 @@ class Sentence(Object):
         Is this sentence a question?
         '''
         return "question" == self.sentenceClass
-
-    def simpleCardString2NumberConverter (self,tags : tuple) -> [tuple]:
-        '''
-        Convert tuple zero and one from string to number
-        '''
-        # FIXME: simpleCardString2NumberConverter is not a method of sentence
-        result = []
-
-        # FIXME: CARD convert only for CARD before Noun ? Perhaps only for my use case!
-        for index in range(len (tags)) :
-            if "CARD" == tags[index][2] :
-                if "NN" == tags[index+1] [2]:
-                    if tags[index][1].isnumeric() :
-                        tags[index] = (tags[index][0],int(tags[index][1]),tags[index][2])
-                    else :
-                        # convert 
-                        tags[index] = (w2n.word_to_num(tags[index][0]),w2n.word_to_num(tags[index][1]),tags[index][2])
-                    result.append((tags[index][1],tags[index+1][0]))
-        return result
 
     def toString (self) -> str:
         result = ""
