@@ -26,11 +26,11 @@ from biz.ritter.nlp import Text     # for sentences class type detection
 from java.nio.file.FileSystems import FileSystems
 from java.lang.System import System
 from java.io.File import File
-
+from java.lang import Object
 from rdflib import Graph
 
 
-class Calculate :
+class Calculate (Object):
     
     
     @classmethod

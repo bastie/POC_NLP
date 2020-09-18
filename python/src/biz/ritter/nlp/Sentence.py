@@ -8,14 +8,8 @@ Created on 13.09.2020
 '''
 import nltk
 from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
-from java.lang.UnsupportedOperationException import UnsupportedOperationException
-from java.lang.IllegalArgumentException import IllegalArgumementException
-
-def iso_639_2_to_nltk_language(x, default=None) -> str:
-# TODO: same method defined in Sentence
-    return {
-        'ger': 'german'
-    }.get(x,default)
+from java.lang import IllegalArgumentException, UnsupportedOperationException, Object
+from biz.ritter.nlp.util import Toolkit
 
 # HACK: I need before import word2numberi18n the environment => I think a bug in word2numberi18n 
 import os
@@ -23,7 +17,7 @@ os.environ ["w2n.lang"] = "de"
 from word2numberi18n import w2n
 
 
-class Sentence(object):
+class Sentence(Object):
     '''
     sentence is a wrapper class and part of abstraction layer so long while I don't found the right way
     
@@ -40,7 +34,7 @@ class Sentence(object):
         '''
         Parse sentence in the token and tag this
         '''
-        nltk_lang = iso_639_2_to_nltk_language(language, 'german')
+        nltk_lang = Toolkit().iso_639_2_to_nltk_language(language, 'german')
         # iterate over the sentences, print the sentences and 
         # tokenize the sentence in his word before print words and
         # analyse the word typ
@@ -74,7 +68,7 @@ class Sentence(object):
                     elif "?" == self.taggedTokens[-1][0]:
                         result = "question"
                     else:
-                        raise IllegalArgumementException (message = "Unknown last char '"+str(self.taggedTokens[-1][0])+"' in sentence:\r"+self.toString()) 
+                        raise IllegalArgumentException (message = "Unknown last char '"+str(self.taggedTokens[-1][0])+"' in sentence:\r"+self.toString()) 
         else :
             raise UnsupportedOperationException (message = "Language "+language+ " not yet (fully) implemented.")
         self.sentenceClass = result

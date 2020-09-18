@@ -13,15 +13,10 @@ from biz.ritter.nlp import Sentence
 
 from java.nio.file import Path, Files
 from java.io import IOException
+from java.lang import Object
+from biz.ritter.nlp.util import Toolkit
 
-def iso_639_2_to_nltk_language(x, default=None) -> str:
-# TODO: same method defined in Sentence
-    return {
-        'ger': 'german'
-    }.get(x,default)
-
-
-class Text(object):
+class Text(Object):
     '''
     classdocs
     '''
@@ -51,7 +46,7 @@ class Text(object):
           replace self.text with list of sentences in self
         '''
         # get sentences from nltk for german
-        nltk_lang = iso_639_2_to_nltk_language(self.lang, 'german')
+        nltk_lang = Toolkit().iso_639_2_to_nltk_language(self.lang, 'german')
         
         allSentences = nltk.sent_tokenize(self.text,language=nltk_lang)
         self.sentences = []
