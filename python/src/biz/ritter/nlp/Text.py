@@ -9,7 +9,7 @@ Created on 13.09.2020
 
 import nltk     # for NLP 
 
-from biz.ritter.nlp import Sentence
+from biz.ritter.nlp.Sentence import Sentence
 
 from java.nio.file import Path, Files
 from java.io import IOException

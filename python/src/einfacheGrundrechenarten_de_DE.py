@@ -27,7 +27,11 @@ from java.nio.file.FileSystems import FileSystems
 from java.lang.System import System
 from java.io.File import File
 from java.lang import Object
+
+# RDF Help
 from rdflib import Graph
+
+import os
 
 
 class Calculate (Object):
@@ -35,6 +39,10 @@ class Calculate (Object):
     
     @classmethod
     def main (_ : type):
+        # we have german text
+        # TODO: let the programm check the language
+        os.environ ["w2n.lang"] = "de" 
+
         calc = Calculate ()
         calc.run()
         

@@ -8,8 +8,10 @@ Created on 13.09.2020
 '''
 import nltk
 from HanTa import HanoverTagger as hTagger    # for NLP (Lemma, POS Tagger) - need numpy
-from java.lang import IllegalArgumentException, UnsupportedOperationException, Object
-from biz.ritter.nlp.util import Toolkit
+from java.lang.IllegalArgumentException import IllegalArgumentException
+from java.lang.UnsupportedOperationException import UnsupportedOperationException
+from java.lang.Object import Object
+from biz.ritter.nlp.util.Toolkit import Toolkit
 
 
 class Sentence(Object):

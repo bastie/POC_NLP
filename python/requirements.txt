@@ -1,4 +1,4 @@
-VampireApi >= 0.2.0
+VampireApi >= 0.2.3
 word2number-i18n
 
 wheel
